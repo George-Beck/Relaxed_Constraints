@@ -13,9 +13,11 @@ router.post('/login', (req, res) => {
     return res.status(400).json({ error: 'Username and password are required' });
   }
   
-  // For now, we'll use a simple hardcoded admin user
-  // In production, you'd check against the database
-  if (username === 'admin' && password === 'admin123') {
+  // Check admin credentials from environment variables
+  const adminUsername = process.env.ADMIN_USERNAME || 'admin';
+  const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+  
+  if (username === adminUsername && password === adminPassword) {
     const token = jwt.sign(
       { username: 'admin', role: 'admin' },
       JWT_SECRET,
