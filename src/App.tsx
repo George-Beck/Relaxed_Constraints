@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Terminal } from './components/Terminal';
 import { ArticleViewer } from './components/ArticleViewer';
 import { WebViewer } from './components/WebViewer';
@@ -349,6 +351,8 @@ function App() {
   return (
     <AuthProvider>
       <AppContent />
+      <Analytics />
+      <SpeedInsights />
     </AuthProvider>
   );
 }
